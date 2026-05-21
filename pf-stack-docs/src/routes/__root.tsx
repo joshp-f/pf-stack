@@ -1,8 +1,8 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import Footer from '../components/Footer'
 import Header from '../components/Header'
+import SidePanel from '../components/SidePanel'
 
 import PostHogProvider from '../integrations/posthog/provider'
 
@@ -44,8 +44,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
         <PostHogProvider>
           <Header />
-          {children}
-          <Footer />
+          <div className="flex min-h-screen">
+            <SidePanel />
+            <div className="flex-1 min-w-0">
+              {children}
+            </div>
+          </div>
           <TanStackDevtools
             config={{
               position: 'bottom-right',
